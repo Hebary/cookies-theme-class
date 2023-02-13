@@ -1,6 +1,9 @@
-import { useState } from 'react'
+
+import { useEffect, useState } from 'react'
+import { GetServerSideProps } from 'next'
 import { NextPage } from "next";
 import {  
+    Button,
     Card, 
     CardContent, 
     FormControl, 
@@ -10,22 +13,35 @@ import {
     RadioGroup 
 } from "@mui/material"
 import { Layout } from '../components/layout/Layout';
-
+import Cookies from 'js-cookie' //+@types
+import axios from 'axios';
 
 
 
 interface Props {
+    theme: string
 }
 
-const ThemeChanger: NextPage<Props> = ({}) => {
+const ThemeChanger: NextPage<Props> = ({ theme }:Props) => {
    
 const [currentTheme, setCurrentTheme] = useState('light');    
-
 const onThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selecteddTheme = e.target.value
-    setCurrentTheme(selecteddTheme)
+    const selectedTheme = e.target.value;
+    setCurrentTheme(selectedTheme);
+    Cookies.set('theme', selectedTheme);
+    
 }
 
+console.log(theme);
+
+useEffect(() => {
+  console.log('Cookies', Cookies.get('theme'));
+}, [])
+
+const onClick = async () => {
+    const { data } =   await axios.get('/api/hello');
+    console.log({data})
+}
 
     return (
         <Layout title='Theme Changer'>
@@ -56,9 +72,27 @@ const onThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                         </RadioGroup>
                     </FormControl>
                 </CardContent>
+            <Button
+                variant='outlined'
+                onClick={onClick}
+            >
+                Request
+            </Button>
             </Card>
-
+            
         </Layout> 
     )
 }
 export default ThemeChanger
+
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+    const { theme = 'light' } = req.cookies
+    return {
+        props: {
+            theme,
+        }
+    }
+}
