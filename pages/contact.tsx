@@ -1,15 +1,17 @@
-import { NextPage } from "next"
+import { NextPage } from 'next';
+import { Typography } from '@mui/material';
+import { Layout } from '../components/layout/Layout';
 
 
-const Contact: NextPage = () => {
-
-
-return (
-       <div>
-           Contact
-       </div>
-    )
+interface Props {
 }
 
-
-export default Contact
+export const Contact: NextPage<Props> = ({}) => {
+   return (
+        <Layout title='Contact'>
+            <Typography>
+                Contact
+            </Typography>
+        </Layout>
+    )
+}

@@ -8,7 +8,10 @@ interface Props {
 const HomePage: NextPage<Props> = ({}) => {
    return (
        <Layout>
-            <Typography className='fadein'>Cookie Master2</Typography>
+            <Typography 
+                className='fadein'>
+                    Cookie Theme Change
+            </Typography>
        </Layout>
     )
 }
