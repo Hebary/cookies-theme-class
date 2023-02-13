@@ -1,8 +1,7 @@
+import { NextPage } from "next"
 
 
-
-
-const Contact: React.FC = () => {
+const Contact: NextPage = () => {
 
 
 return (
