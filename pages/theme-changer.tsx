@@ -22,9 +22,10 @@ interface Props {
     theme: string
 }
 
-const ThemeChanger: NextPage<Props> = ({ theme }:Props) => {
+const ThemeChanger: NextPage<Props> = ({ theme }) => {
    
-const [currentTheme, setCurrentTheme] = useState('light');    
+const [currentTheme, setCurrentTheme] = useState(theme);    
+
 const onThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedTheme = e.target.value;
     setCurrentTheme(selectedTheme);
@@ -86,13 +87,17 @@ const onClick = async () => {
 export default ThemeChanger
 
 // You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
+// - Only if you need to pre-render a page whose data must be fetched at
+// request time
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const { theme = 'light' } = req.cookies
-    return {
-        props: {
-            theme,
+
+    const validTheme = ['light', 'dark', 'custom']
+    
+        return{
+            props: {
+                    theme: validTheme.includes(theme) ? theme : 'light'
+                }
+            }
         }
-    }
-}
