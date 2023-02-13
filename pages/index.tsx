@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material"
 
 
 interface Props {
@@ -5,7 +6,7 @@ interface Props {
 const HomePage: React.FC<Props> = ({}) => {
    return (
         <div>
-          <h1 className='fadein'>Hola Mundo</h1>
+          <Typography className='fadein'>Cookie Master</Typography>
         </div>
     )
 }

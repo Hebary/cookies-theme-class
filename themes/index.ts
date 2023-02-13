@@ -1,4 +1,4 @@
 
-export * from './dark-theme';
-export * from './light-theme';
-export * from './custom-theme';
+export { darkTheme } from './darkTheme';
+export { lightTheme } from './lightTheme';
+export { customTheme } from './customTheme';

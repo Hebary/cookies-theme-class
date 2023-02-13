@@ -1,19 +1,19 @@
 import { createTheme } from '@mui/material';
-import { green, grey, purple, red } from '@mui/material/colors';
+import { grey, red } from '@mui/material/colors';
 
 
 
-export const customTheme = createTheme({
+export const lightTheme = createTheme({
     palette: {
       mode: 'light',
       background: {
           default: grey[300]
       },
       primary: {
-          main: red[900]
+          main: '#4a148c'
       },
       secondary: {
-          main: green[500]
+          main: '#19857b'
       },
       error: {
           main: red.A400
