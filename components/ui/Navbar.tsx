@@ -1,6 +1,5 @@
 import { AppBar, IconButton, Toolbar, Typography, Link } from '@mui/material';
 import { MenuOutlined, DarkModeOutlined } from '@mui/icons-material'
-import NextLink from 'next/link';
 
 interface Props {
 }
@@ -15,19 +14,18 @@ export const Navbar: React.FC<Props> = ({}) => {
                     >
                         <MenuOutlined/>
                     </IconButton>
-
-                    <NextLink href='/'>
+                    <Link href='/' underline='none'>
                         <Typography variant='h6' color='white'>Cookie</Typography>
-                    </NextLink>
+                    </Link>
                     <div style={{flex:1}}></div>
-                    <NextLink href='/theme-changer'>
+                    <Link href='/theme-changer'>
 
                         {/* <Typography variant='h6' color='white'> */}
                             <IconButton>
                                 <DarkModeOutlined/>
                             </IconButton>
                         {/* </Typography> */}
-                    </NextLink>
+                    </Link>
             </Toolbar>
         </AppBar>
     )
